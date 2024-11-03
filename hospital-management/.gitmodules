@@ -1,0 +1,3 @@
+[submodule "hospital-management"]
+	path = hospital-management
+	url = https://github.com/Akshurai2004/web_project
