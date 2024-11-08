@@ -1,11 +1,22 @@
 import React from 'react';
+import About from './About';
+import './Home.css';
+import homeImage from './Home-1.jpg'; // Import the image file
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
     <div className="home">
-      <h1>Hospital Name</h1>
-      <p>For Adults and Children</p>
-      <button className="book-button">Book Now</button>
+      <div className="home-image-container">
+        <img src={homeImage} alt="Home" className="home-image" />
+      </div>
+      <div className="home-content">
+        <h1>APPOLO HOSPITALS</h1>
+        <p>For Adults and Children</p>
+        <Link to="/About" className="book-link">
+          <button className="book-button">Book Now</button>
+        </Link>
+      </div>
     </div>
   );
 }

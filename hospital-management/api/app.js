@@ -6,21 +6,26 @@ const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const { mongoUri } = require('./config');
 
+// MongoDB connection
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-
-
-app.use('/api/auth', authRoutes);
-app.use('/api', patientRoutes); // Add more routes as needed
+// CORS options
+const corsOptions = {
+  origin: 'http://localhost:5001', // Allow requests only from frontend
+  optionsSuccessStatus: 200,
+};
 
 // Middleware
+app.use(cors(corsOptions)); // CORS should be configured here, before routes
 app.use(express.json());
-app.use(cors());
 
-// MongoDB Connection
-// Example Route
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api', patientRoutes);
+
+// Example route
 app.get('/', (req, res) => {
   res.send('Hospital Management System API is running!');
 });
