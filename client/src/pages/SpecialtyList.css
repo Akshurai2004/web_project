@@ -1,0 +1,24 @@
+.specialty-list-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1.5rem;
+  }
+  
+  .specialty-item {
+    background-color: #f0f0f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .specialty-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .specialty-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  

@@ -1,59 +1,138 @@
-/* BlogPage.css */
-.blog-page {
-    background-color: #f7f7f7;
-    padding: 20px;
-}
+/* src/App.css */
 
+/* Header Section */
 .header {
-    text-align: center;
-    background-color: #53e6d3   ;
-    color: white;
+    background-color: #53e6d3;
+    color: #fff;
     padding: 20px;
-    margin-top: 0;
-}
-
-.header-title {
-    margin: 0;
-}
-
-.blog-cards-container {
+    text-align: center;
+  }
+  
+  /* Blog List */
+  .blog-list-container {
+    padding: 20px;
+    
+  }
+  
+  .blog-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    padding: 20px;
-}
-
-.blog-card {
-    width: 300px;
-    padding: 20px;
+  }
+  .blog-card {
     background-color: white;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 25px;
+    height: 205px;
     text-align: left;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.blog-card button {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+  }
+  
+  .blog-card:hover {
+    transform: scale(0.95);
+  }
+  
+  .blog-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .blog-card p {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .blog-card span {
+    font-size: 0.8em;
+    color: #aaa;
+  }
+  
+  /* Blog Detail Modal */
+  .blog-detail-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
-}
-
-.history-section {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .blog-detail-modal button {
+    background: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Hospital Info */
+.hospital-info {
+    margin-top: 40px;
+    text-align: center;
+    padding: 30px;
     max-width: 600px;
     margin: 40px auto;
-    text-align: center;
-    padding: 20px;
-    background-color: white;
+    background-color: #f8f8f8;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.history-section img {
-    width: 100px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hospital-info h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+  
+  .hospital-info p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .hospital-info p strong {
+    font-weight: bold;
+  }
+  
+  .hospital-info img {
+    margin-top: 20px;
     border-radius: 50%;
-}
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Modal Styles */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .blog-detail-modal {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1001;
+  }
+  
