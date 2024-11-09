@@ -1,3 +1,6 @@
+require('dotenv').config();  // Load the .env file for the backend
+
 module.exports = {
-    mongoUri: process.env.MONGO_URI || 'mongodb://localhost:27017/hospital-management'
-  };
+  mongoURI: process.env.MONGO_URI,  // MongoDB URI from the .env
+  jwtSecret: process.env.JWT_SECRET,  // Secret key for JWT
+};

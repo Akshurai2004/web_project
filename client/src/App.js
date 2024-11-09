@@ -31,9 +31,10 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route
-            path="/doctor-dashboard"
+            path="/doctor"
             element={isDoctorLoggedIn ? <Doctor /> : <Navigate to="/login" />}
           />
+          
         </Routes>
 
         <Footer />

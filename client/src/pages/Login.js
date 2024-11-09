@@ -1,11 +1,12 @@
-// Login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
   const [role, setRole] = useState('Patient');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();  // Add this hook for navigation
 
   const handleLogin = async () => {
     try {
@@ -14,15 +15,24 @@ const Login = ({ onLogin }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password, role }),
       });
-
+      
       const data = await response.json();
+      
       if (response.ok) {
         console.log('Login successful:', data.message);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userRole', role); // Save role for future reference
+        
+        // First update the login state
+        if (role === 'Doctor') {
+          await onLogin();  // Ensure this completes before navigation
+        }
+        
+        // Then navigate using React Router
         if (role === 'Patient') {
-          window.location.href = '/patient-dashboard';
+          navigate('/patient-dashboard');
         } else if (role === 'Doctor') {
-          onLogin(); // Call onLogin to set doctor login state
-          window.location.href = '/doctor-dashboard'; // Navigate to doctor dashboard
+          navigate('/doctor');  // Make sure this matches your route configuration
         }
       } else {
         console.error('Login failed:', data.message);
@@ -38,7 +48,6 @@ const Login = ({ onLogin }) => {
     <div className="login-section">
       <div className="login-container">
         <h2 className="login-title">Login to Your Account</h2>
-
         <select
           className="login-select"
           value={role}
@@ -47,7 +56,6 @@ const Login = ({ onLogin }) => {
           <option>Patient</option>
           <option>Doctor</option>
         </select>
-
         <input
           type="text"
           placeholder="Enter your username"
@@ -55,7 +63,6 @@ const Login = ({ onLogin }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-
         <input
           type="password"
           placeholder="Enter your password"
@@ -63,11 +70,9 @@ const Login = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <button className="login-button" onClick={handleLogin}>
           Login
         </button>
-
         <a href="/signup" className="signup-link">
           Don't have an account? Sign Up
         </a>

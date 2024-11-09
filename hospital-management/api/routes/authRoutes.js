@@ -1,11 +1,9 @@
-// routes/authRoutes.js
+// backend/routes/authRoutes.js
 const express = require('express');
-const router = express.Router();
 const authController = require('../controllers/authController');
+const router = express.Router();
 
-// Login route
 router.post('/login', authController.login);
-// Register route (for future use)
-router.post('/register', authController.register);
+router.post('/signup', authController.signup); // Signup route
 
 module.exports = router;

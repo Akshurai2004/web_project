@@ -2,70 +2,81 @@ import React, { useState } from 'react';
 import './Signup.css';
 
 const Signup = () => {
-    const [role, setRole] = useState('Patient');
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [role, setRole] = useState('Patient');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleSignup = () => {
-        // Placeholder for backend API call
-        console.log('Signing up with role:', role, 'username:', username, 'email:', email, 'and password:', password);
-    };
+  const handleSignup = async () => {
+    console.log('Signing up with role:', role, 'username:', username, 'email:', email, 'and password:', password);
 
-    return (
-        <div className="signup-section">
-            <div className="signup-container">
-                <h2 className="signup-title">Create Your Account</h2>
+    const response = await fetch('http://localhost:5000/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        role,
+      }),
+    });
 
-                {/* User Role Dropdown */}
-                <select
-                    className="signup-select"
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                >
-                    <option>Patient</option>
-                    <option>Doctor</option>
-                </select>
+    const data = await response.json();
+    if (response.ok) {
+      alert('Signup successful!');
+    } else {
+      alert(data.message || 'Signup failed!');
+    }
+  };
 
-                {/* Username Field */}
-                <input
-                    type="text"
-                    placeholder="Enter your username"
-                    className="signup-input"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+  return (
+    <div className="signup-section">
+      <div className="signup-container">
+        <h2 className="signup-title">Create Your Account</h2>
 
-                {/* Email Field */}
-                <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="signup-input"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+        <select
+          className="signup-select"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option>Patient</option>
+          <option>Doctor</option>
+        </select>
 
-                {/* Password Field */}
-                <input
-                    type="password"
-                    placeholder="Enter your password"
-                    className="signup-input"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+        <input
+          type="text"
+          placeholder="Enter your username"
+          className="signup-input"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-                {/* Sign Up Button */}
-                <button className="signup-button" onClick={handleSignup}>
-                    Sign Up
-                </button>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          className="signup-input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-                {/* Login Link */}
-                <a href="/login" className="login-link">
-                    Already have an account? Login
-                </a>
-            </div>
-        </div>
-    );
+        <input
+          type="password"
+          placeholder="Enter your password"
+          className="signup-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button className="signup-button" onClick={handleSignup}>
+          Sign Up
+        </button>
+
+        <a href="/login" className="login-link">Already have an account? Login</a>
+      </div>
+    </div>
+  );
 };
 
 export default Signup;
