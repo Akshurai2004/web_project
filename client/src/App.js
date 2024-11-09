@@ -10,7 +10,7 @@ import Services from './pages/services';
 import BlogPage from './pages/BlogPage';
 import Signup from './pages/Signup';
 import Doctor from './pages/Doctor';
-
+import Billing from './pages/Billing';
 function App() {
   const [isDoctorLoggedIn, setIsDoctorLoggedIn] = useState(false);
 
@@ -34,7 +34,7 @@ function App() {
             path="/doctor"
             element={isDoctorLoggedIn ? <Doctor /> : <Navigate to="/login" />}
           />
-          
+          <Route path="/billing" element={<Billing />} />
         </Routes>
 
         <Footer />
