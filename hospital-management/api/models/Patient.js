@@ -1,19 +1,36 @@
+// models/Patient.js
 const mongoose = require('mongoose');
 
 const patientSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  medicalHistory: [{
-    condition: String,
-    diagnosis: String,
-    treatment: String,
-    date: Date
-  }],
-  appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }],
-  insurance: {
-    provider: String,
-    policyNumber: String,
-    coverage: String
-  }
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    phoneNumber: String,
+    dateOfBirth: Date,
+    medicalHistory: [{
+        condition: String,
+        diagnosis: String,
+        date: Date
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('Patient', patientSchema);
