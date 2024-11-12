@@ -1,0 +1,88 @@
+/* Larger, centered heading */
+.animated-heading {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    animation: typing 2s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  /* Typing effect animation */
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #333; }
+  }
+  
+  /* Align form in the middle left */
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 15%;
+  }
+  
+  input {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #009688;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  button:hover {
+    background-color: #00796b;
+  }
+  
+  .appointment-list {
+    margin-top: 20px;
+  }
+  
+  .appointment-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .appointment-list li {
+    margin: 15px 0;
+    font-size: 1em;
+  }
+  
+  .patient-info {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .no-appointments {
+    font-style: italic;
+    color: #999;
+  }
+  
+  /* Styling for the appointment time */
+  .appointment-time {
+    font-weight: bold;
+    color: #009688;
+    font-size: 1.1em;
+    border-bottom: 2px solid #009688;
+    padding-bottom: 5px;
+    display: inline-block;
+    margin-top: 5px;
+  }

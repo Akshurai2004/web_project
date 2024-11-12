@@ -11,6 +11,9 @@ import BlogPage from './pages/BlogPage';
 import Signup from './pages/Signup';
 import Doctor from './pages/Doctor';
 import Billing from './pages/Billing';
+import Ambulance from './pages/AmbulanceBooking';
+//import Appointment from './pages/AppointmentBooking';
+import AppointmentBooking from './pages/AppointmentBooking';
 function App() {
   const [isDoctorLoggedIn, setIsDoctorLoggedIn] = useState(false);
 
@@ -35,6 +38,8 @@ function App() {
             element={isDoctorLoggedIn ? <Doctor /> : <Navigate to="/login" />}
           />
           <Route path="/billing" element={<Billing />} />
+          <Route path="/Ambulance" element={<Ambulance />} />
+          <Route path="/Appointment" element={<AppointmentBooking />} />
         </Routes>
 
         <Footer />
