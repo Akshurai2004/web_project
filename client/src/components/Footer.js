@@ -15,7 +15,7 @@ function Footer() {
         </div>
       </div>
       <p className="footer-copyright">
-        &copy; {new Date().getFullYear()} Hospital Name. All rights reserved.
+        &copy; {new Date().getFullYear()} Appolo Hospital. All rights reserved.
       </p>
     </footer>
   );

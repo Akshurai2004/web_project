@@ -1,6 +1,5 @@
-// Billing.js
 import React, { useState } from 'react';
-import './Billing.css';  // Make sure your styles are linked here
+import './Billing.css';
 
 const Billing = () => {
   const [activeSection, setActiveSection] = useState('insurance');
@@ -10,31 +9,62 @@ const Billing = () => {
     doctorName: '',
   });
 
-  // Placeholder for expenditure value (can be fetched from backend later)
-  const expenditure = null;
-
-  // Function to switch between sections (Insurance and Billing)
+  // Switch between sections
   const switchSection = (section) => {
     setActiveSection(section);
     setFormData({ name: '', contact: '', doctorName: '' });
   };
 
-  // Function to handle form input changes
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Placeholder for form submission (backend connection can be added later)
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} form submitted (Backend integration pending)`);
+
+    if (activeSection === 'billing') {
+      const expenditure = Math.floor(Math.random() * (5000 - 300 + 1)) + 300;
+
+      // Send billing data to the backend
+      try {
+        const response = await fetch('http://localhost:5000/api/billing/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            expenditure,
+            type: 'billing',
+          }),
+        });
+        const data = await response.json();
+        alert(`Billing submitted with expenditure: ${data.data.expenditure}`);
+      } catch (error) {
+        console.error('Error submitting billing data:', error);
+      }
+    } else {
+      // Check for a matching billing record for insurance submission
+      try {
+        const response = await fetch(`http://localhost:5000/api/billing/latest?name=${formData.name}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          const insuranceExpenditure = Math.floor(data.expenditure * 0.5);
+          alert(`Insurance form submitted with expenditure: ${insuranceExpenditure}`);
+        } else {
+          alert('No user found or no matching billing record');
+        }
+      } catch (error) {
+        console.error('Error fetching latest expenditure:', error);
+      }
+    }
   };
 
   return (
     <div className="App">
       <div className="container">
-        {/* Section Switcher */}
         <div className="switcher">
           <button
             onClick={() => switchSection('insurance')}
@@ -50,83 +80,42 @@ const Billing = () => {
           </button>
         </div>
 
-        {/* Insurance Section */}
-        {activeSection === 'insurance' ? (
-          <div className="form-section">
-            <h2>Insurance</h2>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Contact"
-                name="contact"
-                value={formData.contact}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Doctor Name"
-                name="doctorName"
-                value={formData.doctorName}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Expenditure (To be fetched from backend)"
-                value={expenditure !== null ? `${expenditure} `: ''}
-                readOnly
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        ) : (
-          // Billing Section
-          <div className="form-section">
-            <h2>Billing</h2>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Contact"
-                name="contact"
-                value={formData.contact}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Doctor Name"
-                name="doctorName"
-                value={formData.doctorName}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Expenditure (To be fetched from backend)"
-                value={expenditure !== null ? `${expenditure} `: ''}
-                readOnly
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        )}
+        <div className="form-section">
+          <h2>{activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Contact"
+              name="contact"
+              value={formData.contact}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Doctor Name"
+              name="doctorName"
+              value={formData.doctorName}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Expenditure"
+              value={activeSection === 'insurance' ? 'Calculated on submission' : 'Generated on submission'}
+              readOnly
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   );

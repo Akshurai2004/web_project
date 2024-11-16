@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
+
 const Login = ({ onLogin }) => {
   const [role, setRole] = useState('Patient');
   const [username, setUsername] = useState('');
@@ -30,7 +31,7 @@ const Login = ({ onLogin }) => {
         
         // Then navigate using React Router
         if (role === 'Patient') {
-          navigate('/patient-dashboard');
+          navigate('/Appointment');
         } else if (role === 'Doctor') {
           navigate('/doctor');  // Make sure this matches your route configuration
         }

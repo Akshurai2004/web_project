@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './AmbulanceBooking.css';
 
 function AmbulanceBooking() {
-  const [bedsAvailable, setBedsAvailable] = useState(1000);
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
@@ -20,13 +19,8 @@ function AmbulanceBooking() {
   const handleBooking = (e) => {
     e.preventDefault();
     if (formData.name && formData.contact && formData.pickupLocation) {
-      if (bedsAvailable > 0) {
-        setBedsAvailable(bedsAvailable - 1);
-        alert('Ambulance booked successfully!');
-        setFormData({ name: '', contact: '', pickupLocation: '' });
-      } else {
-        alert('No beds available');
-      }
+      alert(`Ambulance booked successfully! For further assistance, please contact: 9000000001`);
+      setFormData({ name: '', contact: '', pickupLocation: '' });
     } else {
       alert('Please fill in all the details');
     }
@@ -37,7 +31,6 @@ function AmbulanceBooking() {
       <div className="container">
         <div className="form-section">
           <h2>Ambulance Booking</h2>
-          <h3>Beds Available: {bedsAvailable}</h3>
           <form onSubmit={handleBooking}>
             <input
               type="text"
