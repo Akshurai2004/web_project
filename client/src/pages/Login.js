@@ -1,32 +1,56 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Login.css";
-
-const Login = () => {
+import './Login.css';
+const Login = ({ onLogin }) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('patient'); // Default role is 'patient'
+  const [userType, setUserType] = useState('patient');
 
-  // Function to handle login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Placeholder for login logic (e.g., API call)
-    const isLoginSuccessful = email === 'patient@example.com' && password === 'password123';
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          userType,
+        }),
+      });
 
-    if (isLoginSuccessful) {
-      alert('Login successful!');
-      // Navigate based on selected role
-      if (role === 'patient') {
-        navigate('/appointment');
-      } else {
-        alert('Welcome, Doctor!');
+      if (!response.ok) {
+        throw new Error('Login failed!');
       }
-    } else {
-      alert('Invalid email or password');
+
+      const data = await response.json();
+
+      // If doctor login is successful, call onLogin
+      if (userType === 'doctor') {
+        onLogin(); // This sets isDoctorLoggedIn to true
+      }
+
+      // Redirect based on user type
+      switch(userType) {
+        case 'doctor':
+          navigate('/doctor');
+          break;
+        case 'patient':
+          navigate('/appointment');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (error) {
+      alert('Invalid username or password');
     }
   };
+
+  // Rest of the component remains the same...
 
   return (
     <div className="login-container">
@@ -34,20 +58,23 @@ const Login = () => {
         <h2>Welcome back!</h2>
         <p>Enter your Credentials to access your account</p>
         <form onSubmit={handleLogin}>
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            style={{ width: '100%', padding: '12px', marginBottom: '20px', borderRadius: '8px', border: '1px solid #ccc' }} // Inline styling for dropdown
-          >
-            <option value="patient">Patient</option>
-            <option value="doctor">Doctor</option>
-          </select>
+          {/* User Type Selection */}
+          <div className="user-type-select">
+            <select 
+              value={userType} 
+              onChange={(e) => setUserType(e.target.value)}
+              required
+            >
+              <option value="patient">Patient</option>
+              <option value="doctor">Doctor</option>
+            </select>
+          </div>
 
           <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input
@@ -76,7 +103,7 @@ const Login = () => {
           </button>
         </div>
         <div className="signup">
-          Don’t have an account? <a href="/signup">Sign Up</a>
+          Don't have an account? <a href="/signup">Sign Up</a>
         </div>
       </div>
     </div>
