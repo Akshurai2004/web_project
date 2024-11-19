@@ -83,6 +83,88 @@ const blogs = [
     brief: 'Unlock the secrets to better sleep and improved health...',
     details: 'Sleep disorders can have a significant impact on physical and mental well-being, but there are effective strategies available to identify, manage, and overcome these challenges. This guide provides a comprehensive overview of the various types of sleep disorders, their potential consequences, and evidence-based approaches to achieving more restful and rejuvenating slumber for improved overall health and quality of life.'
   }
+  ,
+    {
+      id: 11,
+      title: 'Understanding Diabetes Management in Children',
+      author: 'Dr. Rajesh Kumar',
+      date: 'Sep 25, 2024',
+      brief: 'Essential guidelines for managing pediatric diabetes...',
+      details: 'Managing diabetes in children requires a unique approach that considers their growing bodies, changing hormones, and lifestyle needs. This comprehensive guide explores effective strategies for blood sugar monitoring, insulin management, dietary considerations, and the importance of family support in helping children with diabetes thrive while maintaining an active, healthy lifestyle.'
+    },
+    {
+      id: 12,
+      title: 'Heart Health: Prevention Through Lifestyle Changes',
+      author: 'Dr. Sanjay Mehta',
+      date: 'Sep 20, 2024',
+      brief: 'Discover key lifestyle modifications for a healthier heart...',
+      details: 'Cardiovascular health can be significantly improved through targeted lifestyle modifications. This in-depth guide examines evidence-based strategies for heart disease prevention, including dietary recommendations, exercise guidelines, stress management techniques, and the importance of regular health screenings in maintaining optimal heart function and reducing risk factors.'
+    },
+    {
+      id: 13,
+      title: 'Managing Chronic Pain: Holistic Approaches',
+      author: 'Dr. Priya Sharma',
+      date: 'Sep 15, 2024',
+      brief: 'Explore comprehensive strategies for chronic pain management...',
+      details: 'Chronic pain management requires a multifaceted approach that addresses both physical and psychological aspects of pain. This guide explores various holistic treatment options, including physical therapy, mindfulness techniques, alternative therapies, and lifestyle modifications that can help individuals better manage chronic pain and improve their quality of life.'
+    },
+    {
+      id: 14,
+      title: 'Nutrition for Optimal Athletic Performance',
+      author: 'Dr. Vikram Singh',
+      date: 'Sep 10, 2024',
+      brief: 'Essential nutritional guidelines for athletes and active individuals...',
+      details: 'Proper nutrition plays a crucial role in athletic performance and recovery. This comprehensive guide outlines key nutritional strategies for athletes, including macronutrient balance, timing of meals, hydration requirements, and supplementation considerations to help optimize training results and enhance overall athletic performance.'
+    },
+    {
+      id: 15,
+      title: 'Understanding Autoimmune Disorders',
+      author: 'Dr. Anita Desai',
+      date: 'Sep 5, 2024',
+      brief: 'A comprehensive look at autoimmune conditions and management...',
+      details: 'Autoimmune disorders present unique challenges in both diagnosis and treatment. This detailed guide explores the mechanisms behind autoimmune conditions, common symptoms, diagnostic approaches, and various management strategies, including medical treatments, dietary modifications, and lifestyle changes that can help individuals better cope with autoimmune disorders.'
+    },
+    {
+      id: 16,
+      title: 'Pregnancy and Mental Health',
+      author: 'Dr. Maya Reddy',
+      date: 'Aug 30, 2024',
+      brief: 'Supporting mental wellness during pregnancy and postpartum...',
+      details: 'Mental health during pregnancy and the postpartum period requires special attention and care. This guide discusses common mental health challenges faced during pregnancy, including anxiety and depression, while offering practical strategies for emotional well-being, seeking support, and maintaining mental health throughout the maternal journey.'
+    },
+    {
+      id: 17,
+      title: 'Environmental Health: Impact on Well-being',
+      author: 'Dr. Arjun Kapoor',
+      date: 'Aug 25, 2024',
+      brief: 'Understanding how environmental factors affect our health...',
+      details: 'Environmental factors play a significant role in our overall health and well-being. This comprehensive guide examines the various ways environmental conditions impact our health, from air quality and water safety to chemical exposures and climate change, while providing practical tips for minimizing environmental health risks in daily life.'
+    },
+    {
+      id: 18,
+      title: 'Bone Health Across the Lifespan',
+      author: 'Dr. Nisha Patel',
+      date: 'Aug 20, 2024',
+      brief: 'Essential strategies for maintaining strong bones at every age...',
+      details: 'Maintaining bone health is crucial throughout all stages of life. This guide explores the factors that influence bone density, including nutrition, exercise, and lifestyle choices, while providing age-specific recommendations for bone health maintenance and the prevention of conditions like osteoporosis.'
+    },
+    {
+      id: 19,
+      title: 'Managing Stress in the Digital Age',
+      author: 'Dr. Kiran Shah',
+      date: 'Aug 15, 2024',
+      brief: 'Modern approaches to stress management in a connected world...',
+      details: 'The digital age presents unique challenges for stress management and mental well-being. This comprehensive guide explores the impact of technology on stress levels, while providing practical strategies for digital wellness, including mindful technology use, stress-reduction techniques, and maintaining work-life balance in an increasingly connected world.'
+    },
+    {
+      id: 20,
+      title: 'Understanding Respiratory Health',
+      author: 'Dr. Suresh Kumar',
+      date: 'Aug 10, 2024',
+      brief: 'Essential knowledge for maintaining healthy lung function...',
+      details: 'Respiratory health is fundamental to overall well-being. This detailed guide examines various aspects of lung health, including common respiratory conditions, preventive measures, breathing exercises, and lifestyle modifications that can help maintain optimal respiratory function and prevent respiratory complications.'
+    }
+
 ];
 
 

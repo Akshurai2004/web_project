@@ -1,0 +1,46 @@
+Let me break down this rescue mission planning problem in a clear, organized way:
+
+Core Objective:
+- Design a system to coordinate rescue teams searching for lost people in a forest divided into zones
+- Optimize team movements, manage resources, and track rescued individuals efficiently
+
+Key Components:
+
+1. Zone Management:
+- Forest is split into multiple zones
+- Each zone has:
+  * Priority level (1-5, where 1 is highest priority)
+  * People needing rescue
+  * Available supplies
+  * Must be visited in an efficient order
+
+2. Rescue Teams Operation:
+- Teams need to move between zones
+- Must avoid backtracking
+- Have limited supplies (first aid, food, etc.)
+- Need to handle supplies strategically
+
+3. Tracking System:
+- Must record details of rescued people
+- Track rescue timing
+- Allow quick updates and information retrieval
+- Maintain dynamic priority updates
+
+4. Required Data Structures:
+- Priority Queue: For managing zone priorities and rescue order
+- Queue: For managing team movements between zones
+- Stack: For resource/supply management
+- Binary Tree: For tracking rescued individuals
+
+5. System Requirements:
+- Must handle dynamic updates
+- Be user-friendly
+- Efficiently manage and update priorities
+- Optimize resource usage
+
+The challenge essentially asks you to create a comprehensive rescue mission management system using various data structures to efficiently coordinate multiple aspects of a rescue operation. The focus is on both the practical aspects (like resource management and rescue prioritization) and the technical implementation (using appropriate data structures for different functionalities).
+
+Would you like me to elaborate on any specific aspect of this problem? For instance, I could:
+1. Dive deeper into the data structures needed
+2. Explain how the priority system would work
+3. Discuss the resource management approach

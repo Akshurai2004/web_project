@@ -1,82 +1,83 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import "./Login.css";
 
-
-const Login = ({ onLogin }) => {
-  const [role, setRole] = useState('Patient');
-  const [username, setUsername] = useState('');
+const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();  // Add this hook for navigation
+  const [role, setRole] = useState('patient'); // Default role is 'patient'
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, role }),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        console.log('Login successful:', data.message);
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userRole', role); // Save role for future reference
-        
-        // First update the login state
-        if (role === 'Doctor') {
-          await onLogin();  // Ensure this completes before navigation
-        }
-        
-        // Then navigate using React Router
-        if (role === 'Patient') {
-          navigate('/Appointment');
-        } else if (role === 'Doctor') {
-          navigate('/doctor');  // Make sure this matches your route configuration
-        }
+  // Function to handle login
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Placeholder for login logic (e.g., API call)
+    const isLoginSuccessful = email === 'patient@example.com' && password === 'password123';
+
+    if (isLoginSuccessful) {
+      alert('Login successful!');
+      // Navigate based on selected role
+      if (role === 'patient') {
+        navigate('/appointment');
       } else {
-        console.error('Login failed:', data.message);
-        alert(data.message);
+        alert('Welcome, Doctor!');
       }
-    } catch (error) {
-      console.error('An error occurred during login:', error);
-      alert('An error occurred. Please try again later.');
+    } else {
+      alert('Invalid email or password');
     }
   };
 
   return (
-    <div className="login-section">
-      <div className="login-container">
-        <h2 className="login-title">Login to Your Account</h2>
-        <select
-          className="login-select"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option>Patient</option>
-          <option>Doctor</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Enter your username"
-          className="login-input"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Enter your password"
-          className="login-input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="login-button" onClick={handleLogin}>
-          Login
-        </button>
-        <a href="/signup" className="signup-link">
-          Don't have an account? Sign Up
-        </a>
+    <div className="login-container">
+      <div className="login-form">
+        <h2>Welcome back!</h2>
+        <p>Enter your Credentials to access your account</p>
+        <form onSubmit={handleLogin}>
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            style={{ width: '100%', padding: '12px', marginBottom: '20px', borderRadius: '8px', border: '1px solid #ccc' }} // Inline styling for dropdown
+          >
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+          </select>
+
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <a href="/forgot-password" className="forgot-password">
+            Forgot password?
+          </a>
+          <button type="submit">Login</button>
+        </form>
+        <div className="or-divider">
+          <span>Or</span>
+        </div>
+        <div className="social-login">
+          <button>
+            <img src="google-icon.png" alt="Google" />
+            Sign in with Google
+          </button>
+          <button>
+            <img src="apple-icon.png" alt="Apple" />
+            Sign in with Apple
+          </button>
+        </div>
+        <div className="signup">
+          Don’t have an account? <a href="/signup">Sign Up</a>
+        </div>
       </div>
     </div>
   );

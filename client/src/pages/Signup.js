@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import './Signup.css';
 
 const Signup = () => {
-  const [role, setRole] = useState('Patient');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignup = async () => {
-    console.log('Signing up with role:', role, 'username:', username, 'email:', email, 'and password:', password);
+    console.log('Signing up with username:', username, 'email:', email, 'and password:', password);
 
     const response = await fetch('http://localhost:5000/api/auth/signup', {
       method: 'POST',
@@ -19,7 +18,6 @@ const Signup = () => {
         username,
         email,
         password,
-        role,
       }),
     });
 
@@ -32,22 +30,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-section">
+    <div className="signup-page">
       <div className="signup-container">
-        <h2 className="signup-title">Create Your Account</h2>
-
-        <select
-          className="signup-select"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option>Patient</option>
-          <option>Doctor</option>
-        </select>
+        <h2 className="signup-title">Get Started Now</h2>
 
         <input
           type="text"
-          placeholder="Enter your username"
+          placeholder="Name"
           className="signup-input"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -55,7 +44,7 @@ const Signup = () => {
 
         <input
           type="email"
-          placeholder="Enter your email"
+          placeholder="Email address"
           className="signup-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -63,17 +52,33 @@ const Signup = () => {
 
         <input
           type="password"
-          placeholder="Enter your password"
+          placeholder="Password"
           className="signup-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
+        <div className="terms-container">
+          <input type="checkbox" id="terms" />
+          <label htmlFor="terms">I agree to the terms & policy</label>
+        </div>
+
         <button className="signup-button" onClick={handleSignup}>
-          Sign Up
+          Signup
         </button>
 
-        <a href="/login" className="login-link">Already have an account? Login</a>
+        <div className="signup-or">
+          <span>Or</span>
+        </div>
+
+        <div className="social-buttons">
+          <button className="google-button">Sign in with Google</button>
+          <button className="apple-button">Sign in with Apple</button>
+        </div>
+
+        <p className="signin-link">
+          Have an account? <a href="/login">Sign In</a>
+        </p>
       </div>
     </div>
   );

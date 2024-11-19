@@ -12,8 +12,10 @@ import Signup from './pages/Signup';
 import Doctor from './pages/Doctor';
 import Billing from './pages/Billing';
 import Ambulance from './pages/AmbulanceBooking';
-//import Appointment from './pages/AppointmentBooking';
+import BedBooking from './pages/BedBooking';
 import AppointmentBooking from './pages/AppointmentBooking';
+
+
 function App() {
   const [isDoctorLoggedIn, setIsDoctorLoggedIn] = useState(false);
 
@@ -40,6 +42,9 @@ function App() {
           <Route path="/billing" element={<Billing />} />
           <Route path="/Ambulance" element={<Ambulance />} />
           <Route path="/Appointment" element={<AppointmentBooking />} />
+          <Route path="/BedBooking" element={<BedBooking />} />
+          <Route path="/bed-info" element={<BedBooking />} />
+          <Route path="/bed-form" element={<BedBooking />} />
         </Routes>
 
         <Footer />
