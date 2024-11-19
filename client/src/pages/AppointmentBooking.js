@@ -4,6 +4,12 @@ function AppointmentBooking() {
   const [formData, setFormData] = useState({
     patientName: '',
     doctorName: '',
+    phoneNumber: '',
+    email: '',
+    reasonForVisit: '',
+    insurance: '',
+    emergencyContact: '',
+    previousPatient: 'no'
   });
   const [appointmentTime, setAppointmentTime] = useState('');
   const [appointments, setAppointments] = useState([]);
@@ -69,13 +75,32 @@ function AppointmentBooking() {
     e.preventDefault();
     setError('');
 
-    // Validate all required fields
-    if (!formData.patientName || !formData.doctorName || !appointmentTime) {
-      setError('Please fill in all fields');
+    // Frontend validation for new fields
+    if (!formData.phoneNumber || !formData.email) {
+      setError('Please fill in all required fields');
       return;
     }
 
-    // Validate appointment time
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    // Phone validation
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(formData.phoneNumber.replace(/\D/g, ''))) {
+      setError('Please enter a valid 10-digit phone number');
+      return;
+    }
+
+    // Original backend validation and submission
+    if (!formData.patientName || !formData.doctorName || !appointmentTime) {
+      setError('Please fill in all required fields');
+      return;
+    }
+
     const timeError = validateAppointmentTime(appointmentTime);
     if (timeError) {
       setError(timeError);
@@ -100,13 +125,19 @@ function AppointmentBooking() {
         throw new Error(errorData.message || 'Failed to book appointment');
       }
 
-      // Reset form
-      setFormData({ patientName: '', doctorName: '' });
+      setFormData({
+        patientName: '',
+        doctorName: '',
+        phoneNumber: '',
+        email: '',
+        reasonForVisit: '',
+        insurance: '',
+        emergencyContact: '',
+        previousPatient: 'no'
+      });
       setAppointmentTime('');
       
-      // Fetch updated appointments list
       await fetchAppointments();
-      
       alert('Appointment booked successfully!');
 
     } catch (error) {
@@ -127,7 +158,6 @@ function AppointmentBooking() {
         throw new Error('Failed to cancel appointment');
       }
 
-      // Refresh appointments list
       await fetchAppointments();
       alert('Appointment cancelled successfully!');
     } catch (error) {
@@ -148,81 +178,190 @@ function AppointmentBooking() {
   };
 
   return (
-    <div className="App">
-      <div className="container">
-        <h2 className="animated-heading">Appointment Booking</h2>
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-4xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Appointment Booking</h2>
         {error && (
-          <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
+          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
             {error}
           </div>
         )}
-        <div className="form-section">
-          <form onSubmit={handleBooking}>
-            <input
-              type="text"
-              placeholder="Patient Name"
-              name="patientName"
-              value={formData.patientName}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Doctor Name"
-              name="doctorName"
-              value={formData.doctorName}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="datetime-local"
-              value={appointmentTime}
-              onChange={handleTimeChange}
-              required
-            />
-            <button type="submit">Book Appointment</button>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <form onSubmit={handleBooking} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Patient Name *
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter full name"
+                  name="patientName"
+                  value={formData.patientName}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Doctor Name *
+                </label>
+                <input
+                  type="text"
+                  placeholder="Select doctor"
+                  name="doctorName"
+                  value={formData.doctorName}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  placeholder="Enter phone number"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  placeholder="Enter email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Appointment Date & Time *
+                </label>
+                <input
+                  type="datetime-local"
+                  value={appointmentTime}
+                  onChange={handleTimeChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Insurance Provider
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter insurance provider"
+                  name="insurance"
+                  value={formData.insurance}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Reason for Visit
+                </label>
+                <textarea
+                  placeholder="Please describe your symptoms or reason for visit"
+                  name="reasonForVisit"
+                  value={formData.reasonForVisit}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md h-24"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Emergency Contact
+                </label>
+                <input
+                  type="text"
+                  placeholder="Name and phone number"
+                  name="emergencyContact"
+                  value={formData.emergencyContact}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Previous Patient?
+                </label>
+                <select
+                  name="previousPatient"
+                  value={formData.previousPatient}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                >
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Book Appointment
+              </button>
+            </div>
           </form>
 
-          <div className="appointment-list" style={{ marginTop: '2rem' }}>
-            <h3>All Appointments</h3>
+          <div className="mt-12">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">All Appointments</h3>
             {appointments.length > 0 ? (
-              <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              <div className="space-y-4 max-h-96 overflow-y-auto">
                 {appointments.map((appointment) => (
                   <div
                     key={appointment._id}
-                    style={{
-                      border: '1px solid #ddd',
-                      borderRadius: '8px',
-                      padding: '1rem',
-                      marginBottom: '1rem',
-                      backgroundColor: '#f9f9f9'
-                    }}
+                    className="border rounded-lg p-4 bg-gray-50"
                   >
-                    <div style={{ marginBottom: '0.5rem' }}>
-                      <strong>{appointment.patientName}</strong> with Dr. {appointment.doctorName}
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="font-semibold text-lg">
+                          {appointment.patientName}
+                        </p>
+                        <p className="text-gray-600">
+                          Dr. {appointment.doctorName}
+                        </p>
+                        <p className="text-gray-500 text-sm">
+                          {formatDate(appointment.appointmentTime)}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => handleCancelAppointment(appointment._id)}
+                        className="bg-red-600 text-white px-4 py-1 rounded-md hover:bg-red-700 transition-colors text-sm"
+                      >
+                        Cancel
+                      </button>
                     </div>
-                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
-                      {formatDate(appointment.appointmentTime)}
-                    </div>
-                    <button
-                      onClick={() => handleCancelAppointment(appointment._id)}
-                      style={{
-                        backgroundColor: '#ff4444',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        padding: '0.5rem 1rem',
-                        marginTop: '0.5rem',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Cancel Appointment
-                    </button>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="no-appointments">No appointments scheduled</p>
+              <p className="text-gray-500 text-center py-4">No appointments scheduled</p>
             )}
           </div>
         </div>
