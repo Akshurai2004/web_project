@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './AppointmentBooking.css';
 
 function AppointmentBooking() {
   const [formData, setFormData] = useState({
@@ -15,7 +16,6 @@ function AppointmentBooking() {
   const [appointments, setAppointments] = useState([]);
   const [error, setError] = useState('');
 
-  // Fetch all appointments when component mounts
   useEffect(() => {
     fetchAppointments();
   }, []);
@@ -75,27 +75,23 @@ function AppointmentBooking() {
     e.preventDefault();
     setError('');
 
-    // Frontend validation for new fields
     if (!formData.phoneNumber || !formData.email) {
       setError('Please fill in all required fields');
       return;
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address');
       return;
     }
 
-    // Phone validation
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(formData.phoneNumber.replace(/\D/g, ''))) {
       setError('Please enter a valid 10-digit phone number');
       return;
     }
 
-    // Original backend validation and submission
     if (!formData.patientName || !formData.doctorName || !appointmentTime) {
       setError('Please fill in all required fields');
       return;
@@ -178,20 +174,22 @@ function AppointmentBooking() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Appointment Booking</h2>
+    <div className="appointment-page">
+      <div className="appointment-container">
+        <h2 className="appointment-title">Appointment Booking</h2>
+        
         {error && (
-          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
+          <div className="error-message">
             {error}
           </div>
         )}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <form onSubmit={handleBooking} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Patient Name *
+
+        <div className="appointment-form-card">
+          <form onSubmit={handleBooking} className="form-spacing">
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label required">
+                  Patient Name
                 </label>
                 <input
                   type="text"
@@ -199,14 +197,14 @@ function AppointmentBooking() {
                   name="patientName"
                   value={formData.patientName}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Doctor Name *
+              <div className="form-group">
+                <label className="form-label required">
+                  Doctor Name
                 </label>
                 <input
                   type="text"
@@ -214,14 +212,14 @@ function AppointmentBooking() {
                   name="doctorName"
                   value={formData.doctorName}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone Number *
+              <div className="form-group">
+                <label className="form-label required">
+                  Phone Number
                 </label>
                 <input
                   type="tel"
@@ -229,14 +227,14 @@ function AppointmentBooking() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address *
+              <div className="form-group">
+                <label className="form-label required">
+                  Email Address
                 </label>
                 <input
                   type="email"
@@ -244,26 +242,26 @@ function AppointmentBooking() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Appointment Date & Time *
+              <div className="form-group">
+                <label className="form-label required">
+                  Appointment Date & Time
                 </label>
                 <input
                   type="datetime-local"
                   value={appointmentTime}
                   onChange={handleTimeChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   required
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className="form-group">
+                <label className="form-label">
                   Insurance Provider
                 </label>
                 <input
@@ -272,12 +270,12 @@ function AppointmentBooking() {
                   name="insurance"
                   value={formData.insurance}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                 />
               </div>
 
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className="form-group full-width">
+                <label className="form-label">
                   Reason for Visit
                 </label>
                 <textarea
@@ -285,12 +283,13 @@ function AppointmentBooking() {
                   name="reasonForVisit"
                   value={formData.reasonForVisit}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md h-24"
+                  className="form-input"
+                  rows="3"
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className="form-group">
+                <label className="form-label">
                   Emergency Contact
                 </label>
                 <input
@@ -299,19 +298,19 @@ function AppointmentBooking() {
                   name="emergencyContact"
                   value={formData.emergencyContact}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+              <div className="form-group">
+                <label className="form-label">
                   Previous Patient?
                 </label>
                 <select
                   name="previousPatient"
                   value={formData.previousPatient}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                 >
                   <option value="no">No</option>
                   <option value="yes">Yes</option>
@@ -319,40 +318,34 @@ function AppointmentBooking() {
               </div>
             </div>
 
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
-              >
+            <div className="form-actions">
+              <button type="submit" className="submit-button">
                 Book Appointment
               </button>
             </div>
           </form>
 
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">All Appointments</h3>
+          <div className="appointments-section">
+            <h3 className="appointments-title">All Appointments</h3>
             {appointments.length > 0 ? (
-              <div className="space-y-4 max-h-96 overflow-y-auto">
+              <div className="appointment-list">
                 {appointments.map((appointment) => (
-                  <div
-                    key={appointment._id}
-                    className="border rounded-lg p-4 bg-gray-50"
-                  >
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="font-semibold text-lg">
+                  <div key={appointment._id} className="appointment-card">
+                    <div className="appointment-info">
+                      <div className="appointment-details">
+                        <p className="patient-name">
                           {appointment.patientName}
                         </p>
-                        <p className="text-gray-600">
+                        <p className="doctor-name">
                           Dr. {appointment.doctorName}
                         </p>
-                        <p className="text-gray-500 text-sm">
+                        <p className="appointment-date">
                           {formatDate(appointment.appointmentTime)}
                         </p>
                       </div>
                       <button
                         onClick={() => handleCancelAppointment(appointment._id)}
-                        className="bg-red-600 text-white px-4 py-1 rounded-md hover:bg-red-700 transition-colors text-sm"
+                        className="cancel-button"
                       >
                         Cancel
                       </button>
@@ -361,7 +354,7 @@ function AppointmentBooking() {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-center py-4">No appointments scheduled</p>
+              <p className="no-appointments">No appointments scheduled</p>
             )}
           </div>
         </div>

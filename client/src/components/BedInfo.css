@@ -1,0 +1,38 @@
+.bed-info-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .bed-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .bed-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f9f8;
+    border-radius: 4px;
+  }
+  
+  .bed-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .bed-count {
+    font-size: 18px;
+    color: #00695c;
+  }
+  
+  .card-title {
+    color: #00695c;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }

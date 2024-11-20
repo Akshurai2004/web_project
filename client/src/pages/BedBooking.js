@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import BedInfo from "../components/BedInfo";
 import BedForm from "../components/BedForm";
- import "./BedBooking.css";
+import "./BedBooking.css";
+import homeImage from './Home-3.jpeg';
 
 const BedBooking = () => {
-  // State for available beds
   const [beds, setBeds] = useState({
     special: 10,
     semiSpecial: 15,
     common: 20,
   });
 
-  // State to control which component to show
-  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    contact: "",
+    bedType: "",
+  });
 
-  // Function to handle bed booking
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const bookBed = (bedType) => {
     if (beds[bedType] > 0) {
       setBeds((prevBeds) => ({
@@ -27,23 +38,43 @@ const BedBooking = () => {
     }
   };
 
-  // Toggle between BedInfo and BedForm
-  const toggleView = () => {
-    setShowForm((prevShowForm) => !prevShowForm);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.bedType) {
+      alert("Please select a bed type.");
+      return;
+    }
+    bookBed(formData.bedType);
+    setFormData({
+      name: "",
+      age: "",
+      contact: "",
+      bedType: "",
+    });
   };
 
   return (
     <div className="container">
-      <h2>Hospital Bed Booking</h2>
-      <button onClick={toggleView}>
-        {showForm ? "View Bed Information" : "Book a Bed"}
-      </button>
-
-      {showForm ? (
-        <BedForm bookBed={bookBed} />
-      ) : (
+      <div className="header-section">
+        <div className="hospital-image">
+          {/* Replace the src with your actual image path */}
+          <img 
+            src={homeImage}
+            alt="Hospital Building" 
+            className="hospital-img"
+          />
+        </div>
+        <h2 className="page-title">Hospital Bed Booking</h2>
+      </div>
+      
+      <div className="booking-container">
         <BedInfo beds={beds} />
-      )}
+        <BedForm 
+          formData={formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      </div>
     </div>
   );
 };

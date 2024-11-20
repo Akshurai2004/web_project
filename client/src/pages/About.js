@@ -57,9 +57,6 @@ Apollo Hospitals is one of India's premier healthcare institutions, widely recog
         </button>
       </div>
       
-      <button className="read-more-button">
-        Read More
-      </button>
     </div>
   );
 };

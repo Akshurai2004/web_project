@@ -86,27 +86,25 @@ const Login = ({ onLogin }) => {
           />
           <a href="/forgot-password" className="forgot-password">
             Forgot password?
-          </a>
+          </a><div class="llogin" >
           <button type="submit">Login</button>
+            </div>
         </form>
         <div className="or-divider">
           <span>Or</span>
         </div>
         <div className="social-login">
-          <button>
-            <img src="google-icon.png" alt="Google" />
-            Sign in with Google
-          </button>
-          <button>
-            <img src="apple-icon.png" alt="Apple" />
-            Sign in with Apple
-          </button>
+  
+          <button className="google-button">Sign in with Google</button>
+          <button className="apple-button">Sign in with Apple</button>
+    
         </div>
         <div className="signup">
           Don't have an account? <a href="/signup">Sign Up</a>
         </div>
       </div>
-    </div>
+      </div>
+    
   );
 };
 

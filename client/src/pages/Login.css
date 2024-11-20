@@ -1,18 +1,18 @@
-/* Main container styling */
+/* Login page styling */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   font-family: 'Arial', sans-serif;
 }
 
-/* Login form styling */
+/* Form container styling */
 .login-form {
   width: 100%;
   max-width: 400px;
-  background-color: #fff;
+  background: #fff;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -35,53 +35,160 @@
 /* User Type Select Styling */
 .user-type-select {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .user-type-select select {
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px;
   font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   background-color: #fff;
-  appearance: none; /* Removes default browser styling */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 50%;
-  border: 1px solid #dfdfdf;
-  border-radius: 2px;
-  margin-right: 2rem;
-  padding: 1rem;
-  padding-right: 2rem;
-}
-
-.user-type-select select:focus {
-  border-color: #428bca;
+  background-position: right 12px center;
+  background-size: 12px;
   outline: none;
-  box-shadow: 0 0 5px rgba(66, 139, 202, 0.5);
+  transition: all 0.3s ease;
+}  /* There's an extra space here */
+.user-type-select select:focus {
+  border-color: #53e6d3;
+  box-shadow: 0 0 5px rgba(83, 230, 211, 0.5);
 }
 
-/* Rest of the CSS remains the same as in the previous version */
+/* Input fields styling */
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 20px;
+  padding: 12px;
+  margin-bottom: 15px;
   font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-input:focus {
-  border-color: #428bca;
-  box-shadow: 0 0 5px rgba(66, 139, 202, 0.5);
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #53e6d3;
+  box-shadow: 0 0 5px rgba(83, 230, 211, 0.5);
 }
 
-/* (Rest of the previous CSS remains unchanged) */
+/* Forgot password link */
+.forgot-password {
+  display: block;
+  text-align: right;
+  color: #53e6d3;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Login button styling */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #53e6d3;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  
+}
+
+.login-button:hover {
+  transform: scale(1.02);
+}
+
+/* Divider styling */
+.login-or {
+  margin: 20px 0;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  
+}
+
+.login-or span {
+  position: relative;
+  display: inline-block;
+  background: #fff;
+  padding: 0 10px;
+  z-index: 1;
+  
+}
+
+.login-or:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #ddd;
+  z-index: 0;
+  
+}
+
+/* Social login buttons */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.google-button,
+.apple-button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #003e19;
+  color: #a50404;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left:10px;
+  margin-bottom:15px;
+  margin-top:15px;
+}
+
+.google-button:hover,
+.apple-button:hover {
+  background-color: #003a0f;
+}
+
+/* Sign up link */
+.signup-link {
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-link a {
+  color: #53e6d3;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .login-form {
+    padding: 20px;
+  }
+}
