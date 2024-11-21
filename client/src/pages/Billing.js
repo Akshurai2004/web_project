@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Billing.css';
-
+//forms
 const Billing = () => {
   const [activeSection, setActiveSection] = useState('insurance');
   const [formData, setFormData] = useState({

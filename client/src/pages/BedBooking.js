@@ -32,9 +32,9 @@ const BedBooking = () => {
         ...prevBeds,
         [bedType]: prevBeds[bedType] - 1,
       }));
-      alert(`${bedType.replace(/([A-Z])/g, " $1")} bed booked successfully!`);
+      alert(` bed booked successfully!`);
     } else {
-      alert(`No ${bedType.replace(/([A-Z])/g, " $1")} beds available!`);
+      alert(` beds available!`);
     }
   };
 
@@ -57,7 +57,7 @@ const BedBooking = () => {
     <div className="container">
       <div className="header-section">
         <div className="hospital-image">
-          {/* Replace the src with your actual image path */}
+
           <img 
             src={homeImage}
             alt="Hospital Building" 

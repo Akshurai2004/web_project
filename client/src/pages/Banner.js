@@ -1,6 +1,6 @@
 import React from 'react';
 import './Banner.css';
-
+//services
 const Banner = () => {
   return (
     <div className="banner-section">

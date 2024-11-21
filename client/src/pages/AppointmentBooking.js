@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';//hooks
 import './AppointmentBooking.css';
 
+//for storing input from user
 function AppointmentBooking() {
   const [formData, setFormData] = useState({
     patientName: '',
@@ -12,8 +13,8 @@ function AppointmentBooking() {
     emergencyContact: '',
     previousPatient: 'no'
   });
-  const [appointmentTime, setAppointmentTime] = useState('');
-  const [appointments, setAppointments] = useState([]);
+  const [appointmentTime, setAppointmentTime] = useState('');//time
+  const [appointments, setAppointments] = useState([]);//from server
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function AppointmentBooking() {
       setError('Error fetching appointments: ' + error.message);
     }
   };
-
+//for updates of emails and names
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -40,7 +41,7 @@ function AppointmentBooking() {
       [name]: value
     }));
   };
-
+//appointment time -date
   const handleTimeChange = (e) => {
     setAppointmentTime(e.target.value);
   };

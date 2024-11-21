@@ -1,6 +1,6 @@
 const Billing = require('../models/billingModel');
 
-// Add billing or insurance data
+// Billing or insurance data
 exports.addBilling = async (req, res) => {
   try {
     const { name, contact, doctorName, expenditure, type } = req.body;
@@ -12,10 +12,10 @@ exports.addBilling = async (req, res) => {
   }
 };
 
-// Fetch the latest expenditure entry based on name
+// Fetch the expenditure - name
 exports.getLatestExpenditureByName = async (req, res) => {
   try {
-    const { name } = req.query; // Extract the name from query parameters
+    const { name } = req.query; // Extract the name 
     const latestEntry = await Billing.findOne({ name: name, type: 'billing' })
       .sort({ _id: -1 })
       .exec();

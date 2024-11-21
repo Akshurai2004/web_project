@@ -156,7 +156,7 @@ input[type="password"]:focus {
   background-color: #f5f5f5;
 }
 
-/* Sign-up link */
+
 .signup-link {
   font-size: 14px;
   color: #555;
@@ -171,7 +171,7 @@ input[type="password"]:focus {
   text-decoration: underline;
 }
 
-/* Mobile responsiveness */
+
 @media (max-width: 768px) {
   .login-container {
     padding: 20px;

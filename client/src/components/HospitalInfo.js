@@ -1,4 +1,4 @@
-// src/components/HospitalInfo.js
+
 
 import React from 'react';
 import Founder from './founder.jpeg';

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import homeImage from './Home-1.jpg'; // Import the image file
+import homeImage from './Home-1.jpg'; 
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
         <img src={homeImage} alt="Home" className="home-image" />
       </div>
       <div className="home-content">
-        <h1>APPOLO HOSPITALS</h1>
+        <h1>APOLLO HOSPITALS</h1>
         <p>For Adults and Children</p>
         <Link to="/About" className="book-link">
           <button className="book-button">Book Now</button>

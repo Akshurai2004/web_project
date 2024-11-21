@@ -1,4 +1,4 @@
-require('dotenv').config();  // Load the .env file for the backend
+require('dotenv').config();  
 
 module.exports = {
   mongoURI: process.env.MONGO_URI,  // MongoDB URI from the .env

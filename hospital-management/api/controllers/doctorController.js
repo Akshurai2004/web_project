@@ -11,7 +11,7 @@ exports.getAllDoctors = async (req, res) => {
   }
 };
 
-// Get a specific doctor by ID
+
 exports.getDoctor = async (req, res) => {
   const { id } = req.params;
 

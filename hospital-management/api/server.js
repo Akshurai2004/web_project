@@ -1,7 +1,7 @@
 // backend/server.js
 const app = require('./app');
 const mongoose = require('mongoose');
-const config = require('./config');  // Adjust the path as necessary
+const config = require('./config'); 
 
 mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log(''))

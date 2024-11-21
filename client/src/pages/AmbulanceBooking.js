@@ -96,7 +96,7 @@ const AmbulanceBooking = () => {
           ))}
         </div>
 
-        {/* Navigation buttons */}
+      
         <button className="prev" onClick={prevSlide}>
           ‹
         </button>

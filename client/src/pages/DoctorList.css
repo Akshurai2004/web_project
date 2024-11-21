@@ -1,31 +1,30 @@
 
-/* Page Background */
+
 body {
     background-color: #f7f7f7;
     font-family: Arial, sans-serif;
-    margin: 0; /* Removes any default margin */
-    padding: 0; /* Removes any default padding */
+    margin: 0;
+    padding: 0;
 }
 
-/* Header Section */
+
 .doctor-info-title-container {
     width: 100%;
-    background-color: #53e6d3; /* Updated background color */
+    background-color: #53e6d3; 
     text-align: center;
     padding: 20px;
-    margin: 0; /* Removes any space around the container */
+    margin: 0; 
     position: relative;
-    box-sizing: border-box; /* Ensures padding does not affect the width */
+    box-sizing: border-box;
 }
 
 .doctor-info-title {
     font-size: 2em;
-    color: #fff; /* White text color for the title */
+    color: #fff; 
     margin: 0;
     font-weight: bold;
 }
 
-/* Doctor Information Section */
 .doctor-list-container {
     padding: 20px 0;
     display: flex;
@@ -33,7 +32,6 @@ body {
     align-items: center;
 }
 
-/* Container for Doctor Cards */
 .doctor-list {
     display: flex;
     flex-wrap: wrap;

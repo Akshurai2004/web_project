@@ -1,4 +1,4 @@
-// BlogCard.js
+
 import React, { useState } from 'react';
 
 const BlogCard = ({ title, summary, details, date, author }) => {

@@ -8,8 +8,8 @@
   flex: 1;
   height: 100%;
   overflow: hidden;
-  border: 10px solid #fff; /* Add a 10px white border */
-  box-sizing: border-box; /* Ensure the border is included in the element's size */
+  border: 10px solid #fff; 
+  box-sizing: border-box; 
   border-radius: 50px;
 }
 

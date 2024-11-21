@@ -1,6 +1,4 @@
-/* Signup.css */
 
-/* Page styling */
 .signup-page {
     display: flex;
     justify-content: center;
@@ -9,8 +7,7 @@
     background-color: #f9f9f9;
     font-family: 'Arial', sans-serif;
   }
-  
-  /* Container styling */
+
   .signup-container {
     width: 100%;
     max-width: 400px;
@@ -28,7 +25,6 @@
     color: #333;
   }
   
-  /* Input styling */
   .signup-input {
     width: 100%;
     padding: 12px;
@@ -45,7 +41,7 @@
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
   }
   
-  /* Terms container styling */
+
   .terms-container {
     display: flex;
     align-items: center;
@@ -58,7 +54,7 @@
     color: #555;
     margin-left: 10px;
   }
-    /* Signup button styling */
+ 
   .signup-button {
     width: 100%;
     padding: 12px;
@@ -76,7 +72,7 @@
     transform: scale(1.02);
   }
   
-  /* Separator styling */
+
   .signup-or {
     margin: 20px 0;
     font-size: 14px;
@@ -100,8 +96,7 @@
     background: #ddd;
     z-index: -1;
   }
-  
-  /* Social buttons styling */
+
   .social-buttons {
     display: flex;
     justify-content: center;
@@ -130,7 +125,6 @@
     background-color: #f5f5f5;
   }
   
-  /* Sign-in link */
   .signin-link {
     font-size: 14px;
     color: #555;
@@ -144,8 +138,7 @@
   .signin-link a:hover {
     text-decoration: underline;
   }
-  
-  /* Mobile responsiveness */
+
   @media (max-width: 768px) {
     .signup-container {
       padding: 20px;

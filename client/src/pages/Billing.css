@@ -16,8 +16,8 @@
   display: flex;
   gap: 10px;
   margin: 0 auto 30px;
-  justify-content: center; /* Center the buttons */
-  text-align: center; /* Center text inside buttons */
+  justify-content: center; 
+  text-align: center; 
 }
 
 .switcher button {
@@ -31,7 +31,7 @@
   border-radius: 6px;
   transition: all 0.3s ease;
   min-width: 120px;
-  text-align: center; /* Ensure text is centered in buttons */
+  text-align: center;
 }
 
 .switcher button.active {
@@ -42,7 +42,7 @@
 .form-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align form items to the left */
+  align-items: flex-start; 
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -53,7 +53,7 @@
   margin-bottom: 30px;
   font-size: 36px;
   font-weight: 600;
-  text-align: left; /* Left align heading */
+  text-align: left; 
   width: 100%;
 }
 
@@ -62,7 +62,7 @@
   margin-bottom: 10px;
   font-size: 20px;
   color: #333;
-  text-align: left; /* Left align labels */
+  text-align: left; 
   width: 100%;
 }
 
@@ -75,7 +75,7 @@
   border: 2px solid #b2dfdb;
   border-radius: 8px;
   transition: border-color 0.3s ease;
-  text-align: left; /* Left align input text */
+  text-align: left;
 }
 
 .form-section input:focus,
@@ -96,8 +96,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 10px;
-  width: 100%; /* Full width button */
-  text-align: center; /* Center button text */
+  width: 100%; 
+  text-align: center; 
 }
 
 .form-section button:hover {
@@ -119,8 +119,6 @@
 .form-section input[type="file"]::file-selector-button:hover {
   background-color: #00635a;
 }
-
-/* Add responsiveness for smaller screens */
 @media (max-width: 768px) {
   .container {
       width: 95%;

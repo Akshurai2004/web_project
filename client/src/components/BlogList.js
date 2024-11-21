@@ -1,4 +1,4 @@
-// src/components/BlogList.js
+
 
 import React, { useState } from 'react';
 import BlogDetail from './BlogDetail';

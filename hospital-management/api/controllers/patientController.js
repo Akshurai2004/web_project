@@ -46,7 +46,7 @@ exports.addAppointment = async (req, res) => {
   const { patientName, doctorName, appointmentTime } = req.body;
 
   try {
-    // Validate request body
+
     if (!patientName || !doctorName || !appointmentTime) {
       return res.status(400).json({ 
         message: 'Missing required fields: patientName, doctorName, and appointmentTime are required' 
@@ -95,10 +95,10 @@ exports.addAppointment = async (req, res) => {
     });
   }
 };
-
+    // If patientName is provided, get appointments for that patient
 exports.getAppointments = async (req, res) => {
   try {
-    // If patientName is provided, get appointments for that patient
+
     if (req.query.patientName) {
       const appointments = await Appointment.find({
         patientName: req.query.patientName

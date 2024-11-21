@@ -1,4 +1,4 @@
-/* Page Layout */
+
 .appointment-page {
   min-height: 100vh;
   background-color: #f8fafc;
@@ -6,7 +6,7 @@
 }
 
 .appointment-container {
-  max-width: 1000px;  /* Reduced from previous width */
+  max-width: 1000px;  
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -19,7 +19,6 @@
   margin-bottom: 2rem;
 }
 
-/* Form Card */
 .appointment-form-card {
   background-color: white;
   border-radius: 0.75rem;
@@ -44,7 +43,7 @@
   }
 }
 
-/* Form Elements */
+
 .form-label {
   display: block;
   font-size: 0.875rem;
@@ -67,7 +66,7 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* Buttons */
+
 .submit-button {
   background-color:darkgreen;
   color: white;
@@ -95,7 +94,6 @@
   background-color: #b91c1c;
 }
 
-/* Messages */
 .error-message {
   background-color: #fef2f2;
   color: #dc2626;
@@ -104,7 +102,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* Appointments List */
+
 .appointments-section {
   margin-top: 3rem;
 }
@@ -149,7 +147,6 @@
   font-size: 0.875rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 640px) {
   .appointment-container {
     padding: 0 0.5rem;

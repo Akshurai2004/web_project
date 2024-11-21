@@ -1,4 +1,4 @@
-// src/components/BlogDetail.js
+
 
 import React from 'react';
 

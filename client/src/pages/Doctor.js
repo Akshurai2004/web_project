@@ -1,4 +1,4 @@
-// Doctor.js
+
 import React from 'react';
 import DoctorList from './DoctorList';
 import './Doctor.css';
