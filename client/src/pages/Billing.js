@@ -87,46 +87,27 @@ const Billing = () => {
       }
     } else {
       // Handle insurance submission
-      try {
-        // If supporting documents are uploaded, handle file upload separately
-        let supportingDocumentsUrl = '';
-        if (formData.supportingDocuments) {
-          const formDataUpload = new FormData();
-          formDataUpload.append('file', formData.supportingDocuments);
-          const uploadResponse = await fetch('http://localhost:5000/api/upload', {
-            method: 'POST',
-            body: formDataUpload,
-          });
-          const uploadData = await uploadResponse.json();
-          supportingDocumentsUrl = uploadData.url;
-        }
 
-        const response = await fetch(`http://localhost:5000/api/billing/latest?name=${formData.name}`);
-        const data = await response.json();
+try {
+  // Fetch billing record for the patient by name
+  const response = await fetch(`http://localhost:5000/api/billing/latest?name=${formData.name}`);
+  const data = await response.json();
 
-        if (response.ok && data.expenditure) {
-          const insuranceExpenditure = Math.floor(data.expenditure * 0.5);
-          const insuranceData = {
-            ...formData,
-            expenditure: insuranceExpenditure,
-            supportingDocuments: supportingDocumentsUrl,
-            type: 'insurance',
-          };
+  if (response.ok && data.expenditure) {
+    // Calculate 50% of billing expenditure
+    const insuranceExpenditure = Math.floor(data.expenditure * 0.5);
 
-          // Send insurance data to the backend
-          const insuranceResponse = await fetch('http://localhost:5000/api/insurance/add', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(insuranceData),
-          });
-          const insuranceResult = await insuranceResponse.json();
-          alert(`Insurance form submitted with expenditure: ${insuranceResult.data.expenditure}`);
-        } else {
-          alert('No user found or no matching billing record');
-        }
-      } catch (error) {
-        console.error('Error submitting insurance data:', error);
-      }
+    // Display the calculated insurance expenditure
+    alert(`Insurance expenditure for ${formData.name} is: ${insuranceExpenditure}`);
+  } else {
+    alert('No matching billing record found for the patient.');
+  }
+} catch (error) {
+  console.error('Error fetching billing record:', error);
+  alert('An error occurred while calculating insurance expenditure.');
+}
+
+
     }
   };
 
@@ -396,7 +377,7 @@ const Billing = () => {
                 }
                 value={
                   activeSection === 'insurance'
-                    ? 'Calculated on submission'
+                    ? 'Calculated on submission'  
                     : 'Generated on submission'
                 }
                 readOnly

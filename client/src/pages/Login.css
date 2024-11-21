@@ -1,5 +1,5 @@
-/* Login page styling */
-.login-container {
+/* Page styling */
+.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,8 +8,8 @@
   font-family: 'Arial', sans-serif;
 }
 
-/* Form container styling */
-.login-form {
+/* Container styling */
+.login-container {
   width: 100%;
   max-width: 400px;
   background: #fff;
@@ -19,14 +19,14 @@
   text-align: center;
 }
 
-.login-form h2 {
+.login-title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #333;
 }
 
-.login-form p {
+.login-description {
   font-size: 14px;
   color: #777;
   margin-bottom: 30px;
@@ -44,18 +44,15 @@
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #fff;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
   outline: none;
+  appearance: none;
   transition: all 0.3s ease;
-}  /* There's an extra space here */
+  background-color: #fff;
+}
+
 .user-type-select select:focus {
-  border-color: #53e6d3;
-  box-shadow: 0 0 5px rgba(83, 230, 211, 0.5);
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 /* Input fields styling */
@@ -73,8 +70,8 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-  border-color: #53e6d3;
-  box-shadow: 0 0 5px rgba(83, 230, 211, 0.5);
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 /* Forgot password link */
@@ -103,8 +100,6 @@ input[type="password"]:focus {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-
-  
 }
 
 .login-button:hover {
@@ -114,20 +109,14 @@ input[type="password"]:focus {
 /* Divider styling */
 .login-or {
   margin: 20px 0;
-  position: relative;
-  text-align: center;
   font-size: 14px;
   color: #777;
-  
 }
 
 .login-or span {
-  position: relative;
   display: inline-block;
   background: #fff;
   padding: 0 10px;
-  z-index: 1;
-  
 }
 
 .login-or:before {
@@ -138,8 +127,7 @@ input[type="password"]:focus {
   right: 0;
   height: 1px;
   background: #ddd;
-  z-index: 0;
-  
+  z-index: -1;
 }
 
 /* Social login buttons */
@@ -157,21 +145,18 @@ input[type="password"]:focus {
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #003e19;
-  color: #a50404;
+  background-color: #fff;
+  color: #555;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-left:10px;
-  margin-bottom:15px;
-  margin-top:15px;
 }
 
 .google-button:hover,
 .apple-button:hover {
-  background-color: #003a0f;
+  background-color: #f5f5f5;
 }
 
-/* Sign up link */
+/* Sign-up link */
 .signup-link {
   font-size: 14px;
   color: #555;
@@ -188,7 +173,7 @@ input[type="password"]:focus {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .login-form {
+  .login-container {
     padding: 20px;
   }
 }

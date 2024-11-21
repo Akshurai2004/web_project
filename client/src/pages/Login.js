@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+//LOGIN.js
+
+
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -29,13 +32,11 @@ const Login = ({ onLogin }) => {
 
       const data = await response.json();
 
-      // If doctor login is successful, call onLogin
       if (userType === 'doctor') {
-        onLogin(); // This sets isDoctorLoggedIn to true
+        onLogin();
       }
 
-      // Redirect based on user type
-      switch(userType) {
+      switch (userType) {
         case 'doctor':
           navigate('/doctor');
           break;
@@ -50,18 +51,15 @@ const Login = ({ onLogin }) => {
     }
   };
 
-  // Rest of the component remains the same...
-
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h2>Welcome back!</h2>
-        <p>Enter your Credentials to access your account</p>
+    <div className="login-page">
+      <div className="login-container">
+        <h2 className="login-title">Welcome back!</h2>
+        <p className="login-description">Enter your credentials to access your account.</p>
         <form onSubmit={handleLogin}>
-          {/* User Type Selection */}
           <div className="user-type-select">
-            <select 
-              value={userType} 
+            <select
+              value={userType}
               onChange={(e) => setUserType(e.target.value)}
               required
             >
@@ -69,7 +67,6 @@ const Login = ({ onLogin }) => {
               <option value="doctor">Doctor</option>
             </select>
           </div>
-
           <input
             type="text"
             placeholder="Enter your username"
@@ -84,27 +81,21 @@ const Login = ({ onLogin }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <a href="/forgot-password" className="forgot-password">
-            Forgot password?
-          </a><div class="llogin" >
-          <button type="submit">Login</button>
-            </div>
+          <a href="/forgot-password" className="forgot-password">Forgot password?</a>
+          <button type="submit" className="login-button">Login</button>
         </form>
-        <div className="or-divider">
+        <div className="login-or">
           <span>Or</span>
         </div>
-        <div className="social-login">
-  
+        <div className="social-buttons">
           <button className="google-button">Sign in with Google</button>
           <button className="apple-button">Sign in with Apple</button>
-    
         </div>
-        <div className="signup">
+        <p className="signup-link">
           Don't have an account? <a href="/signup">Sign Up</a>
-        </div>
+        </p>
       </div>
-      </div>
-    
+    </div>
   );
 };
 
